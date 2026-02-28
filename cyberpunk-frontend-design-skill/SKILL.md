@@ -7,6 +7,19 @@ description: Cyberpunk UI design system for building dark-themed, terminal-inspi
 
 Apply this design system to ALL frontend/UI work. These are strong defaults — you may extend creatively but never contradict the core tokens or aesthetic.
 
+## Technology Stack
+
+When bootstrapping a new project or adding to an existing one, use this stack:
+
+- **React + TypeScript** with **Vite** as the build tool and dev server
+- **Tailwind CSS** via Vite's official integration (`@tailwindcss/vite`)
+- **lucide-react** for icons
+- **motion** (formerly Framer Motion) for animations
+
+Follow Vite's conventions and project structure. Use `npm create vite@latest` with the `react-ts` template as the baseline. Install Tailwind via its Vite plugin — not PostCSS. Use CSS variables in `@theme` for the design tokens so Tailwind utilities can reference them.
+
+When adding UI to an existing project, adapt to whatever stack is already in place rather than re-scaffolding.
+
 ## Aesthetic Direction
 
 Dark, terminal-inspired cyberpunk. Think sci-fi command interfaces, not gaming neon. The tone is **technical and precise** — clean grids, monospaced data, subtle glows. Restraint over spectacle.
