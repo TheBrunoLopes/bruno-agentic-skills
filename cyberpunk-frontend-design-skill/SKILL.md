@@ -20,9 +20,68 @@ When bootstrapping a new project or adding to an existing one, use this stack:
 
 Use `fetch` (or `ky` if already installed) for HTTP requests inside query/mutation functions — never raw `useEffect` + `fetch` patterns.
 
-Follow Vite's conventions and project structure. Use `npm create vite@latest` with the `react-ts` template as the baseline. Install Tailwind via its Vite plugin — not PostCSS. Use CSS variables in `@theme` for the design tokens so Tailwind utilities can reference them.
+Follow Vite's conventions and project structure. Use `npm create vite@latest` with the `react-ts` template as the baseline. Install Tailwind via its Vite plugin (`@tailwindcss/vite`) — **not PostCSS**.
 
 When adding UI to an existing project, adapt to whatever stack is already in place rather than re-scaffolding.
+
+## CSS Architecture
+
+The design system has **two CSS layers** that coexist:
+
+1. **Custom CSS classes** (`.cyber-btn`, `.cyber-card`, `.cyber-input`, etc.) — the design system components. These use `var()` references to `:root` tokens. Copy them from `references/components.md` and `references/patterns.md`.
+2. **Tailwind utilities** (`flex`, `gap-4`, `text-cyan`, `bg-pink`, etc.) — for layout, spacing, and quick one-off styling. These are powered by the `@theme` bridge below.
+
+### CSS file setup (`app.css` or `index.css`)
+
+```css
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap');
+
+/* ── Bridge tokens into Tailwind so utilities work ── */
+@theme {
+  --color-cyan:    #00f0ff;
+  --color-pink:    #ff003c;
+  --color-yellow:  #fcee0a;
+  --color-green:   #39ff14;
+
+  --color-bg-deep:     #05050a;
+  --color-bg-surface:  rgba(10, 10, 15, 0.8);
+  --color-bg-panel:    #0a0a0f;
+
+  --color-text-primary:   #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.8);
+  --color-text-muted:     rgba(255, 255, 255, 0.55);
+
+  --color-border-subtle:  rgba(255, 255, 255, 0.08);
+  --color-border-medium:  rgba(255, 255, 255, 0.15);
+
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-body:  'Inter', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+}
+
+/* ── Full design system tokens (source of truth — from tokens.md) ── */
+:root {
+  /* ...paste full :root block from references/tokens.md... */
+}
+
+/* ── Shared @keyframes (from tokens.md) ── */
+/* ...paste @keyframes from references/tokens.md... */
+
+/* ── Component CSS (from components.md) ── */
+/* ...paste .cyber-btn, .cyber-card, .cyber-input, etc... */
+
+/* ── Pattern CSS (from patterns.md) ── */
+/* ...paste .section-header, .ds-nav, .cyber-timeline, etc... */
+```
+
+### When to use which
+
+- **`.cyber-*` classes** for any design system component (buttons, cards, forms, tables, alerts, badges, tabs, modals, toasts, progress bars, etc.)
+- **Tailwind utilities** for layout (`flex`, `grid`, `gap-*`), spacing (`p-*`, `m-*`), and one-off styles where creating a custom class isn't worth it
+- **Inline `style` attributes** for quiet cards and one-off structural styling (this is intentional — see quiet card pattern)
+
+The `@theme` block is a slim bridge — it maps key tokens into Tailwind's namespace so utilities like `text-cyan`, `bg-bg-deep`, `font-mono` work. The `:root` block is the full source of truth for all component CSS.
 
 ## Aesthetic Direction
 
@@ -47,70 +106,20 @@ Before writing any code, pause and understand what you're building:
 
 This system is opinionated but flexible — the aesthetic is fixed, but how you compose components should respond to the specific problem.
 
-## Core Tokens — Always Use These
+## Core Tokens
 
-### Colors
-```css
-/* Backgrounds */
---bg-deep:    #05050a;                    /* page background */
---bg-surface: rgba(10, 10, 15, 0.8);     /* cards, panels */
---bg-subtle:  rgba(10, 10, 15, 0.4-0.5); /* quiet containers */
---bg-input:   rgba(0, 240, 255, 0.03);   /* form inputs */
+All tokens are defined as CSS custom properties in `references/tokens.md`. Copy the full `:root` block from that file into your stylesheet — every component and pattern references these via `var()`.
 
-/* Accent palette */
---cyan:    #00f0ff;     /* primary — focus, active, links */
---pink:    #ff003c;     /* danger — errors, delete, decorations */
---yellow:  #fcee0a;     /* warning — caution, active status */
---green:   #39ff14;     /* success — healthy, confirmed */
+**Key variable groups**: `--bg-*` (backgrounds), `--cyan`/`--pink`/`--yellow`/`--green` (accents + opacity scales at 03–40), `--text-*` (hierarchy), `--border-*` (structural), `--font-*` (4 families), `--text-hero` through `--text-micro` (type scale), `--space-*` (spacing), `--transition-*`, `--shadow-*`, `--z-*`.
 
-/* Text hierarchy */
---text-primary:   #ffffff;
---text-secondary: rgba(255,255,255,0.8);
---text-muted:     rgba(255,255,255,0.55);
---text-faint:     rgba(255,255,255,0.45);
-
-/* Borders */
---border-subtle:  rgba(255,255,255,0.08); /* structural dividers */
---border-medium:  rgba(255,255,255,0.15); /* visible separators */
---border-cyan:    rgba(0,240,255,0.3);    /* interactive elements */
-```
-
-### Typography
-```css
-/* Font stacks — 4 families */
---font-pixel: 'Press Start 2P', cursive;       /* titles, headers, nav labels */
---font-body:  'Inter', sans-serif;              /* paragraphs, descriptions */
---font-mono:  'JetBrains Mono', monospace;      /* EVERYTHING technical — code, data, labels, buttons, forms, tables, badges, stats */
---font-jp:    'Noto Sans JP', sans-serif;       /* decorative Japanese text only */
-
-/* Type scale */
---text-hero:   2.2rem;   /* Press Start 2P — page titles */
---text-h1:     1.4rem;   /* Inter Bold or JBM Bold — hero subheadings, large stats */
---text-h2:     1.1rem;   /* Press Start 2P — section headers */
---text-h3:     1rem;     /* Inter SemiBold — card/dialog titles */
---text-body:   0.85rem;  /* Inter Regular — paragraphs */
---text-sm:     0.75rem;  /* JBM — table data, small text */
---text-xs:     0.7rem;   /* JBM — labels, buttons, metadata */
---text-micro:  0.6rem;   /* JBM — badges, category tags, micro labels */
-```
-
-### Spacing
-```
-4px → micro gaps
-8px → tight spacing (badge padding, small gaps)
-16px → default gap
-24px → section padding, card padding
-32px → between groups
-48px → major section breaks
-80px → page-level section margins
-```
+Shared `@keyframes` animations (`spin`, `pulse`, `blink`, `skeletonShimmer`, `crtFlicker`, `glitchTop`, `glitchBottom`, `gridScroll`) are also in tokens.md.
 
 ### Key Patterns
 
 **Labels**: JetBrains Mono, uppercase, letter-spacing 0.12–0.15em, muted color
 **Hover states**: Always include transition (0.15–0.2s ease). Pattern: cyan bg tint + border hint + text color shift to #00f0ff
 **Focus states**: Cyan border + box-shadow glow `0 0 10px rgba(0,240,255,0.2)`
-**Corner decorations** (loud cards only): `::before` top-left pink, `::after` bottom-right cyan, 20px × 20px
+**Corner decorations** (loud cards only): `::before` top-left pink, `::after` bottom-right pink, 20px × 20px
 
 ## Component Quick Reference
 
@@ -118,25 +127,28 @@ Read `references/components.md` for full specs. Key classes:
 
 | Component | Class | Notes |
 |-----------|-------|-------|
-| Card (loud) | `.cyber-card` | Cyan border, glow, corner decorations |
-| Card (quiet) | inline styles | Subtle border `rgba(255,255,255,0.08)`, no glow |
-| Button | `.cyber-btn` | Variants: default (cyan), `.danger` (pink), `.success` (green), `.warning` (yellow) |
-| Input | `.cyber-input` | Cyan-tinted bg `rgba(0,240,255,0.03)`, `.error` for red border |
+| Card (loud) | `.cyber-card` | Cyan border, glow, pink corner decorations via `::before`/`::after` |
+| Card (quiet) | inline styles | Subtle border `rgba(255,255,255,0.08)`, no glow, no class |
+| Button | `.cyber-btn` | Color: `.cyan` `.pink` `.yellow` `.green`. Size: `.sm`. Also `.icon-btn` for icon-only |
+| Input | `.cyber-input` | Cyan-tinted bg, `.error` for red border. Pair with `.cyber-label` |
 | Textarea | `.cyber-textarea` | Same as input, `min-height: 100px` |
 | Select | `.cyber-select` | Custom chevron, same bg tint |
-| Table | `.cyber-table` | Cyan header border, row hover states |
+| Table | `.cyber-table` | Cyan header border, row hover, corner decorations, `.pagination-btn` |
 | Alert | `.cyber-alert` | Variants: `.info` `.warning` `.error` `.success` |
-| Badge | `.cyber-badge` | Variants: `filled-cyan`, `filled-green`, `filled-yellow`, `filled-pink` |
+| Badge | `.cyber-badge` | Outline: `.cyan` `.pink` `.yellow` `.green`. Filled: `.filled-cyan` etc. (solid bg, dark text) |
+| Code | `.cyber-code` | `data-lang` attribute, syntax classes: `.comment` `.keyword` `.string` `.function` `.variable` |
 | Tabs | `.cyber-tabs` > `.cyber-tab` | Bottom border active state, hover animation |
-| Modal | `.cyber-modal` | Centered, backdrop blur |
-| Toast | `.cyber-toast` | Variants: `-success`, `-error`, `-warning`, `-info` |
-| Tooltip | `.cyber-tooltip-wrap` | Dark bg, cyan accent bar |
-| Progress | `.cyber-progress` | Animated fill with glow |
-| Spinner | `.cyber-spinner` | Cyan border animation |
-| Avatar | `.cyber-avatar` | Grayscale filter + cyan/pink frame |
-| Timeline | `.cyber-timeline` | Vertical line with dot markers |
+| Modal | `.cyber-modal` | Centered, backdrop blur, `.cyber-modal-backdrop` overlay |
+| Toast | `.cyber-toast` | Variants: `.toast-success` `.toast-error` `.toast-warning` `.toast-info` |
+| Tooltip | `.cyber-tooltip-wrap` | Dark bg, cyan accent bar, `.bottom` variant |
+| Progress | `.cyber-progress` | `.fill` with `.cyan`/`.pink`/`.yellow`/`.green` |
+| Spinner | `.cyber-spinner` | Cyan default, `.pink`/`.green` variants |
+| Avatar | `.cyber-avatar` | Text-initials, sizes `.xs`–`.xl`, colors `.pink`/`.yellow`/`.green` |
+| Timeline | `.cyber-timeline` | Vertical line with dot markers via `::before` |
 | Toggle | `.cyber-toggle` | Custom switch with cyan active |
 | Checkbox | `.cyber-checkbox` | Custom check with accent colors |
+| Context menu | `.context-menu` | `.context-menu-item`, `.context-menu-divider`, `.danger` variant |
+| Skeleton | `.skeleton` | `.skeleton-text` (`.sm`/`.md`/`.lg`), `.skeleton-heading`, `.skeleton-avatar`, `.skeleton-btn` |
 
 ## Layout Quick Reference
 
@@ -171,7 +183,7 @@ This system creates depth through layered transparency and environmental details
 - **Japanese decorative text**: Noto Sans JP at 4–15% opacity, large sizes, vertical `writing-mode`. Creates atmosphere in margins/backgrounds without competing with content.
 - **Glow as depth cue**: Cyan `box-shadow` on loud cards makes them feel "closer". Quiet cards with no glow recede. This is the primary depth mechanism.
 - **Border as structure**: Subtle borders (`rgba(255,255,255,0.06–0.08)`) create panel edges. They define space without being visually heavy.
-- **Corner decorations**: The `::before`/`::after` pink-cyan corner marks on loud cards create a "targeting reticle" effect — use on focal elements only.
+- **Corner decorations**: The `::before`/`::after` pink corner marks on loud cards create a "targeting reticle" effect — use on focal elements only.
 
 ## Production Quality
 
@@ -206,11 +218,11 @@ The code you generate must work, not just look right:
 ## Google Fonts Import
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 ```
 
 ## When to Read Reference Files
 
-- Building **forms, tables, buttons, cards, alerts, modals, toasts** → Read `references/components.md`
-- Building **page layouts, app shells, dashboards, navigation** → Read `references/patterns.md`
-- Need **exact color values, typography specs, spacing** → Read `references/tokens.md`
+- **Starting any UI work** → Read `references/tokens.md` first — it has the full `:root` block (copy into your stylesheet) and all shared `@keyframes` animations
+- Building **forms, tables, buttons, cards, alerts, badges, code blocks, modals, toasts, tooltips, progress bars, spinners, skeletons, avatars, tabs** → Read `references/components.md`
+- Building **page layouts, app shells, dashboards, navigation, sidebars, stat rows, timelines, image treatments, effects (glitch, CRT, grid)** → Read `references/patterns.md`

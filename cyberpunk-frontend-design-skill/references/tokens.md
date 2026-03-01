@@ -1,150 +1,292 @@
 # Design Tokens Reference
 
-## Color Palette — Full Specification
+All design tokens as CSS custom properties. Copy the `:root` block into your stylesheet — every component in `components.md` and `patterns.md` references these via `var()`.
 
-### Backgrounds
-| Token | Value | Use |
-|-------|-------|-----|
-| Page background | `#05050a` | `<body>`, main container |
-| Surface (cards) | `rgba(10, 10, 15, 0.8)` | Loud cards, modal panels |
-| Surface (quiet) | `rgba(10, 10, 15, 0.4–0.5)` | Info panels, KV panels, stat rows |
-| Input fields | `rgba(0, 240, 255, 0.03)` | Form inputs, textareas, selects |
-| Input focus | `rgba(0, 240, 255, 0.05)` | Focused form fields |
-| Hover tint | `rgba(0, 240, 255, 0.04)` | Tab hover, nav hover |
-| Active tint | `rgba(0, 240, 255, 0.06)` | Active nav items, selected states |
+## Google Fonts Import
 
-### Accent Colors
-| Name | Hex | RGB | Role |
-|------|-----|-----|------|
-| Cyan | `#00f0ff` | `0, 240, 255` | Primary accent — focus, active, links, primary actions |
-| Pink | `#ff003c` | `255, 0, 60` | Danger — errors, delete, destructive, corner decorations |
-| Yellow | `#fcee0a` | `252, 238, 10` | Warning — caution states, active/pending status |
-| Green | `#39ff14` | `57, 255, 20` | Success — healthy, confirmed, positive metrics |
-
-### Accent Opacity Scale
-Used for backgrounds, borders, and glows at different intensities:
-```
-0.03–0.04  → subtle background tint (inputs, hover)
-0.06       → active background tint (selected nav)
-0.08       → alert/status backgrounds
-0.1        → card/component backgrounds
-0.15       → medium borders
-0.2        → glow shadows, focus rings
-0.3        → default interactive borders
-0.4        → hover borders
-1.0        → solid text, active borders
+```html
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 ```
 
-### Text Colors
-| Token | Value | Use |
-|-------|-------|-----|
-| Primary | `#ffffff` | Headings, active text, input values |
-| Secondary | `rgba(255,255,255,0.8)` | Body text, descriptions, sub-labels |
-| Muted | `rgba(255,255,255,0.55)` | Placeholders, metadata, labels |
-| Faint | `rgba(255,255,255,0.45)` | Disabled text, subtle hints, nav group labels |
-| Ghost | `rgba(255,255,255,0.35)` | Keyboard shortcut indicators |
-
-### Border Colors
-| Token | Value | Use |
-|-------|-------|-----|
-| Structural | `rgba(255,255,255,0.06)` | Row dividers, quiet separators |
-| Subtle | `rgba(255,255,255,0.08)` | Card borders (quiet), section dividers |
-| Medium | `rgba(255,255,255,0.15)` | Visible separators, tab underlines |
-| Cyan default | `rgba(0,240,255,0.3)` | Input borders, interactive elements |
-| Cyan hover | `rgba(0,240,255,0.4)` | Hover state borders |
-| Cyan solid | `#00f0ff` | Active states, focus rings |
-| Pink solid | `#ff003c` | Error borders, corner decorations |
+Or via CSS `@import`:
+```css
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap');
+```
 
 ---
 
-## Typography — Full Specification
+## `:root` Token Block
 
-### Font Families
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+:root {
+  /* ── Accent Colors (solid) ── */
+  --cyan:    #00f0ff;
+  --pink:    #ff003c;
+  --yellow:  #fcee0a;
+  --green:   #39ff14;
+
+  /* ── Backgrounds ── */
+  --bg-deep:         #05050a;
+  --bg-surface:      rgba(10, 10, 15, 0.8);
+  --bg-surface-dim:  rgba(10, 10, 15, 0.5);
+  --bg-surface-faint:rgba(10, 10, 15, 0.4);
+  --bg-input:        rgba(0, 240, 255, 0.03);
+  --bg-input-focus:  rgba(0, 240, 255, 0.05);
+  --bg-panel:        #0a0a0f;
+
+  /* ── Text Hierarchy ── */
+  --text-primary:    #ffffff;
+  --text-secondary:  rgba(255, 255, 255, 0.8);
+  --text-tertiary:   rgba(255, 255, 255, 0.7);
+  --text-muted:      rgba(255, 255, 255, 0.55);
+  --text-faint:      rgba(255, 255, 255, 0.45);
+  --text-ghost:      rgba(255, 255, 255, 0.35);
+
+  /* ── Borders ── */
+  --border-structural: rgba(255, 255, 255, 0.06);
+  --border-subtle:     rgba(255, 255, 255, 0.08);
+  --border-medium:     rgba(255, 255, 255, 0.15);
+
+  /* ── Cyan Opacity Scale ── */
+  --cyan-03: rgba(0, 240, 255, 0.03);
+  --cyan-05: rgba(0, 240, 255, 0.05);
+  --cyan-08: rgba(0, 240, 255, 0.08);
+  --cyan-10: rgba(0, 240, 255, 0.1);
+  --cyan-15: rgba(0, 240, 255, 0.15);
+  --cyan-20: rgba(0, 240, 255, 0.2);
+  --cyan-30: rgba(0, 240, 255, 0.3);
+  --cyan-40: rgba(0, 240, 255, 0.4);
+
+  /* ── Pink Opacity Scale ── */
+  --pink-03: rgba(255, 0, 60, 0.03);
+  --pink-05: rgba(255, 0, 60, 0.05);
+  --pink-08: rgba(255, 0, 60, 0.08);
+  --pink-10: rgba(255, 0, 60, 0.1);
+  --pink-15: rgba(255, 0, 60, 0.15);
+  --pink-20: rgba(255, 0, 60, 0.2);
+  --pink-30: rgba(255, 0, 60, 0.3);
+  --pink-40: rgba(255, 0, 60, 0.4);
+
+  /* ── Yellow Opacity Scale ── */
+  --yellow-03: rgba(252, 238, 10, 0.03);
+  --yellow-05: rgba(252, 238, 10, 0.05);
+  --yellow-08: rgba(252, 238, 10, 0.08);
+  --yellow-10: rgba(252, 238, 10, 0.1);
+  --yellow-15: rgba(252, 238, 10, 0.15);
+  --yellow-20: rgba(252, 238, 10, 0.2);
+  --yellow-30: rgba(252, 238, 10, 0.3);
+  --yellow-40: rgba(252, 238, 10, 0.4);
+
+  /* ── Green Opacity Scale ── */
+  --green-03: rgba(57, 255, 20, 0.03);
+  --green-05: rgba(57, 255, 20, 0.05);
+  --green-08: rgba(57, 255, 20, 0.08);
+  --green-10: rgba(57, 255, 20, 0.1);
+  --green-15: rgba(57, 255, 20, 0.15);
+  --green-20: rgba(57, 255, 20, 0.2);
+  --green-30: rgba(57, 255, 20, 0.3);
+  --green-40: rgba(57, 255, 20, 0.4);
+
+  /* ── Font Stacks ── */
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-body:  'Inter', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+  --font-jp:    'Noto Sans JP', sans-serif;
+
+  /* ── Type Scale ── */
+  --text-hero:  2.2rem;
+  --text-h1:    1.4rem;
+  --text-h2:    1.1rem;
+  --text-h3:    1rem;
+  --text-body:  0.85rem;
+  --text-sm:    0.75rem;
+  --text-xs:    0.7rem;
+  --text-micro: 0.6rem;
+
+  /* ── Line Heights ── */
+  --leading-tight:  1.2;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* ── Spacing Scale ── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-20: 80px;
+
+  /* ── Layout ── */
+  --container-max: 1024px;
+  --container-pad: 24px;
+  --sidebar-width: 260px;
+  --topbar-height: 56px;
+
+  /* ── Transitions ── */
+  --transition-fast:    all 0.12s ease;
+  --transition-default: all 0.2s ease;
+  --transition-button:  color 0.3s ease, box-shadow 0.3s ease;
+  --transition-nav:     all 0.15s ease;
+  --transition-slide:   left 0.3s ease;
+
+  /* ── Shadows ── */
+  --shadow-glow-cyan:   0 0 10px rgba(0, 240, 255, 0.2);
+  --shadow-glow-pink:   0 0 10px rgba(255, 0, 60, 0.2);
+  --shadow-glow-yellow: 0 0 10px rgba(252, 238, 10, 0.2);
+  --shadow-glow-green:  0 0 10px rgba(57, 255, 20, 0.2);
+  --shadow-hover-cyan:  0 0 20px rgba(0, 240, 255, 0.4);
+  --shadow-hover-pink:  0 0 20px rgba(255, 0, 60, 0.4);
+  --shadow-hover-yellow:0 0 20px rgba(252, 238, 10, 0.4);
+  --shadow-hover-green: 0 0 20px rgba(57, 255, 20, 0.4);
+  --shadow-dropdown:    0 8px 32px rgba(0, 0, 0, 0.6);
+
+  /* ── Z-Index Scale ── */
+  --z-base:     0;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-tooltip:  500;
+  --z-toast:    600;
+  --z-modal-backdrop: 1000;
+}
 ```
+
+---
+
+## Global Reset
+
+```css
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+::selection { background: var(--pink); color: white; }
+```
+
+---
+
+## Shared `@keyframes`
+
+```css
+/* ── Spinner rotation ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Pulse dots ── */
+@keyframes pulse {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ── Typing cursor blink ── */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes skeletonShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── CRT flicker (opt-in via .crt-flicker) ── */
+@keyframes crtFlicker {
+  0%   { opacity: 0.88; }
+  100% { opacity: 1.0; }
+}
+
+/* ── Glitch text — top half ── */
+@keyframes glitchTop {
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(-2px, -1px); }
+  94% { transform: translate(2px, 1px); }
+  96% { transform: translate(-1px, 2px); }
+  98% { transform: translate(1px, -1px); }
+}
+
+/* ── Glitch text — bottom half ── */
+@keyframes glitchBottom {
+  0%, 88%, 100% { transform: translate(0); }
+  90% { transform: translate(2px, 1px); }
+  93% { transform: translate(-2px, -2px); }
+  95% { transform: translate(1px, 2px); }
+  97% { transform: translate(-1px, -1px); }
+}
+
+/* ── 3D grid scroll ── */
+@keyframes gridScroll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 60px; }
+}
+```
+
+---
+
+## Typography Usage Guide
 
 ### Press Start 2P — Pixel Headers
+
+| Size | Use | Example |
+|------|-----|---------|
+| `2.2rem` | Page titles | `PAGE_TITLE` |
+| `1.1rem` | Section headers | `SECTION_HEADER` |
+| `0.85rem` | Card titles | `CARD_TITLE` |
+| `0.7rem` | Small labels, modal titles | `SMALL_LABEL` |
+| `0.6rem` | Nav items, brand labels | `NAV_ITEM` |
+| `0.5rem` | Brand name (topbar) | `NEXUS` |
+
 - **Weight**: 400 only (single weight font)
-- **Sizes**: 2.2rem (page title), 1.1rem (section header), 0.85rem (card title), 0.7rem (small label), 0.6rem (nav item)
-- **Use for**: Page titles, section headers, navigation labels, status text, UI accents
-- **Avoid for**: Body text, long paragraphs, descriptions
-- **Note**: Pixel-grid aligned — best at even px values
+- **Avoid**: Body text, descriptions — poor readability at length
+- Pixel-grid aligned — best at even px values
 
 ### Inter — Readable Body Text
-- **Weights**: 400 (regular), 500 (medium), 600 (semibold), 700 (bold)
-- **Sizes**: 1.4rem (hero subheading, bold), 1rem (card/dialog titles, semibold), 0.9rem (body primary, medium), 0.85rem (body default, regular), 0.8rem (small body/helper)
+
+| Size | Weight | Use |
+|------|--------|-----|
+| `1.4rem` | 700 (bold) | Hero subheading |
+| `1rem` | 600 (semibold) | Card/dialog titles |
+| `0.9rem` | 500 (medium) | Body primary |
+| `0.85rem` | 400 (regular) | Body default, descriptions |
+| `0.8rem` | 400 (regular) | Small body, helper text |
+
 - **Line-height**: 1.6–1.8 for body, 1.2–1.4 for headings
-- **Use for**: Paragraphs, descriptions, card content, dialog text, alert messages
+- Primary readable font — use for anything requiring comfortable reading
 
 ### JetBrains Mono — Technical Workhorse
-- **Weights**: 400 (regular), 700 (bold)
-- **Sizes**: 1.4rem (bold stat values), 1.1rem (technical headers), 0.85rem (code/data), 0.75rem (table cells), 0.7rem (labels/buttons/metadata), 0.6rem (badges/micro labels)
-- **Use for**: Code, data values, button text, labels, table headers, form labels, form values, badges, stats, KV panels, timestamps, metadata
+
+| Size | Weight | Use |
+|------|--------|-----|
+| `2rem` | 700 (bold) | Large stat values |
+| `1.4rem` | 700 (bold) | Stat row values |
+| `1.1rem` | 700 (bold) | Technical headers |
+| `0.85rem` | 400 | Code blocks, data, button text |
+| `0.8rem` | 400 | Table cells, inline code |
+| `0.75rem` | 400 | Table data, breadcrumbs |
+| `0.72rem` | 400 | Nav links, sidebar items |
+| `0.7rem` | 400 | Labels, metadata, timestamps |
+| `0.65rem` | 400/700 | Badges, small labels, toast messages |
+| `0.6rem` | 400/700 | Micro labels, category tags |
+| `0.55rem` | 400 | Nav group labels, version text |
+
 - **Label pattern**: `text-transform: uppercase; letter-spacing: 0.12–0.15em`
+- Use for: code, data, buttons, labels, tables, forms, badges, stats, KV panels
 
 ### Noto Sans JP — Decorative Only
-- **Weights**: 400, 700, 900 (black)
-- **Opacity**: 4–15% for background elements, 50–70% for decorative inline
-- **Use for**: Background decoration, vertical edge text, atmospheric overlays
-- **Never use for**: Functional UI text, labels, body content
 
----
+| Size | Weight | Opacity | Use |
+|------|--------|---------|-----|
+| `3–4rem` | 900 (black) | 4–8% | Background vertical text |
+| `2rem` | 900 | 8–12% | Decorative overlay |
+| `1.2rem` | 700 (bold) | 50–55% | Decorative inline |
 
-## Spacing Scale
-
-| Value | Use |
-|-------|-----|
-| `4px` | Micro gaps, badge internal padding |
-| `8px` | Tight spacing, inline gaps, small component padding |
-| `12px` | Input padding (vertical), compact card padding |
-| `16px` | Default gap, input padding (horizontal), standard spacing |
-| `20px` | Card padding (compact), panel padding |
-| `24px` | Card padding (standard), section padding, button padding (horizontal) |
-| `32px` | Between component groups, larger gaps |
-| `48px` | Major section breaks |
-| `80px` | Page-level section margins |
-
-### Container
-- Max width: `1024px`
-- Centered with auto margins
-- Horizontal padding: `24px`
-
-### Grid
-- Standard grid: `display: grid`
-- Common layouts: 2-column (`1fr 1fr`), 3-column, 4-column stat rows
-- Gap: `16–24px` between grid items
-
----
-
-## Shadows & Effects
-
-```css
-/* Card glow (loud cards only) */
-box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-
-/* Focus glow */
-box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-
-/* Error focus glow */
-box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
-
-/* Dropdown/popup shadow */
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-
-/* Backdrop blur (cards, modals) */
-backdrop-filter: blur(5px);
-```
-
-### Transitions
-- Default: `transition: all 0.2s ease`
-- Buttons: `transition: color 0.3s ease, box-shadow 0.3s ease`
-- Nav items: `transition: all 0.15s ease`
-
-### CRT/Glitch Effects (optional decoration)
-- Scanline overlay: repeating gradient, 2px lines
-- Glitch animation: `clip-path` based text distortion
-- Use sparingly for atmospheric elements, never on functional UI
+- `writing-mode: vertical-rl` for edge text, `letter-spacing: 0.5–1rem`
+- **Never** use for functional UI text
