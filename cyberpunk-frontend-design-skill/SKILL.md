@@ -13,8 +13,12 @@ When bootstrapping a new project or adding to an existing one, use this stack:
 
 - **React + TypeScript** with **Vite** as the build tool and dev server
 - **Tailwind CSS** via Vite's official integration (`@tailwindcss/vite`)
+- **zustand** for client state management — lightweight, no boilerplate
+- **@tanstack/react-query** for all server/async state — fetching, caching, mutations, loading and error states
 - **lucide-react** for icons
 - **motion** (formerly Framer Motion) for animations
+
+Use `fetch` (or `ky` if already installed) for HTTP requests inside query/mutation functions — never raw `useEffect` + `fetch` patterns.
 
 Follow Vite's conventions and project structure. Use `npm create vite@latest` with the `react-ts` template as the baseline. Install Tailwind via its Vite plugin — not PostCSS. Use CSS variables in `@theme` for the design tokens so Tailwind utilities can reference them.
 
