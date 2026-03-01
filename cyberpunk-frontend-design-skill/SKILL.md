@@ -28,7 +28,7 @@ When adding UI to an existing project, adapt to whatever stack is already in pla
 
 The design system has **two CSS layers** that coexist:
 
-1. **Custom CSS classes** (`.cyber-btn`, `.cyber-card`, `.cyber-input`, etc.) — the design system components. These use `var()` references to `:root` tokens. Copy them from `references/components.md` and `references/patterns.md`.
+1. **Custom CSS classes** (`.cyber-btn`, `.cyber-card`, `.cyber-input`, etc.) — the design system components. These use `var()` references to `:root` tokens. Copy them from the component and pattern reference files.
 2. **Tailwind utilities** (`flex`, `gap-4`, `text-cyan`, `bg-pink`, etc.) — for layout, spacing, and quick one-off styling. These are powered by the `@theme` bridge below.
 
 ### CSS file setup (`app.css` or `index.css`)
@@ -68,10 +68,10 @@ The design system has **two CSS layers** that coexist:
 /* ── Shared @keyframes (from tokens.md) ── */
 /* ...paste @keyframes from references/tokens.md... */
 
-/* ── Component CSS (from components.md) ── */
+/* ── Component CSS (from components-core.md + components-extended.md) ── */
 /* ...paste .cyber-btn, .cyber-card, .cyber-input, etc... */
 
-/* ── Pattern CSS (from patterns.md) ── */
+/* ── Pattern CSS (from patterns-layout.md + patterns-effects.md) ── */
 /* ...paste .section-header, .ds-nav, .cyber-timeline, etc... */
 ```
 
@@ -123,7 +123,7 @@ Shared `@keyframes` animations (`spin`, `pulse`, `blink`, `skeletonShimmer`, `cr
 
 ## Component Quick Reference
 
-Read `references/components.md` for full specs. Key classes:
+Read `references/components-core.md` and `references/components-extended.md` for full specs. Key classes:
 
 | Component | Class | Notes |
 |-----------|-------|-------|
@@ -152,7 +152,7 @@ Read `references/components.md` for full specs. Key classes:
 
 ## Layout Quick Reference
 
-Read `references/patterns.md` for full specs.
+Read `references/patterns-layout.md` for full specs.
 
 - **App shell**: Sidebar (260px) + top bar (56px height) + content area
 - **Sidebar nav items**: `border-left` active indicator, cyan highlight
@@ -224,5 +224,7 @@ The code you generate must work, not just look right:
 ## When to Read Reference Files
 
 - **Starting any UI work** → Read `references/tokens.md` first — it has the full `:root` block (copy into your stylesheet) and all shared `@keyframes` animations
-- Building **forms, tables, buttons, cards, alerts, badges, code blocks, modals, toasts, tooltips, progress bars, spinners, skeletons, avatars, tabs** → Read `references/components.md`
-- Building **page layouts, app shells, dashboards, navigation, sidebars, stat rows, timelines, image treatments, effects (glitch, CRT, grid)** → Read `references/patterns.md`
+- Building **buttons, cards, forms, tables, alerts, badges, tabs** → Read `references/components-core.md`
+- Building **code blocks, spinners, progress bars, tooltips, toasts, skeletons, avatars, context menus** → Read `references/components-extended.md`
+- Building **page layouts, app shells, sidebars, top bars, breadcrumbs, stat rows, KV panels, form layouts** → Read `references/patterns-layout.md`
+- Building **section headers, glitch text, CRT effects, cyber grid, timelines, image treatments, modals, dividers** → Read `references/patterns-effects.md`
