@@ -4,11 +4,5 @@
   "description": "A collection of agentic skills for Claude Code, including a cyberpunk frontend design system.",
   "author": "TheBrunoLopes",
   "version": "1.0.0",
-  "repository": "https://github.com/TheBrunoLopes/bruno-agentic-skills",
-  "skills": [
-    {
-      "path": "skills/cyberpunk-frontend-design-skill",
-      "name": "cyberpunk-frontend-design-skill"
-    }
-  ]
+  "repository": "https://github.com/TheBrunoLopes/bruno-agentic-skills"
 }
