@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "cyberpunk-frontend-design-skill",
-      "source": ".",
+      "source": "./plugins/cyberpunk-frontend-design-skill",
       "description": "Cyberpunk UI design system for building dark-themed, terminal-inspired interfaces with neon accents, CRT effects, and pixel aesthetics"
     }
   ]
