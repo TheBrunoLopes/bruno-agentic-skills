@@ -63,7 +63,7 @@ Visual effects, decorations, and interactive patterns. All CSS uses `var()` refe
 ```
 
 ```html
-<!-- Glitch text -->
+<!-- Glitch text (decorative/landing page use — the 1.8rem size is an exception to the normal ≤1.1rem app UI rule for Press Start 2P) -->
 <h1 class="glitch" data-text="SYSTEM_ONLINE" style="font-family: var(--font-pixel); font-size: 1.8rem;">SYSTEM_ONLINE</h1>
 
 <!-- Combined: glitch + CRT flicker -->
@@ -281,7 +281,7 @@ Cyberpunk-filtered portrait with offset frames, overlays, decorative bars, and c
   <!-- Status indicator -->
   <div style="position: absolute; bottom: 12px; right: 12px; z-index: 30; display: flex; align-items: center; gap: 6px; background: rgba(5,5,10,0.8); padding: 4px 10px; border: 1px solid var(--cyan-30); backdrop-filter: blur(4px);">
     <div style="width: 7px; height: 7px; background: var(--cyan); border-radius: 50%; animation: pulse 1.5s ease infinite;"></div>
-    <span style="font-family: var(--font-mono); font-size: 9px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.15em;">Online</span>
+    <span style="font-family: var(--font-mono); font-size: 0.56rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.15em;">Online</span>
   </div>
 </div>
 ```

@@ -259,27 +259,96 @@ Sidebar + top bar + content area composed together.
 
 ---
 
+## Shared Layout Classes
+
+These classes eliminate inline style repetition across layouts. Copy them alongside the component CSS.
+
+```css
+/* ── Quiet Card — supporting content wrapper ── */
+.quiet-card {
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-dim);
+}
+
+/* ── Panel Header — title bar with bottom divider ── */
+.panel-header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-structural);
+}
+.panel-header-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-normal);
+}
+
+/* ── Stat Row ── */
+.stat-row {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--border-structural);
+  background: var(--bg-surface-faint);
+}
+.stat-cell {
+  padding: var(--space-5) var(--space-6);
+  border-right: 1px solid var(--border-structural);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-stat);
+}
+
+/* ── Key-Value Pairs ── */
+.kv-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-1);
+}
+.kv-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+```
+
+---
+
 ## Stat Row
 
 Full-width grid displaying key metrics, used below page headers.
 
 ```html
-<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border-structural); background: var(--bg-surface-faint);">
-  <div style="padding: 20px 24px; border-right: 1px solid var(--border-structural);">
-    <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px;">GPU Nodes</div>
-    <div style="font-family: var(--font-mono); font-weight: 700; font-size: var(--text-h1); color: var(--cyan);">8</div>
+<div class="stat-row" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="stat-cell">
+    <div class="stat-label">GPU Nodes</div>
+    <div class="stat-value" style="color: var(--cyan);">8</div>
   </div>
-  <div style="padding: 20px 24px; border-right: 1px solid var(--border-structural);">
-    <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px;">Utilization</div>
-    <div style="font-family: var(--font-mono); font-weight: 700; font-size: var(--text-h1); color: var(--yellow);">87%</div>
+  <div class="stat-cell">
+    <div class="stat-label">Utilization</div>
+    <div class="stat-value" style="color: var(--yellow);">87%</div>
   </div>
-  <div style="padding: 20px 24px; border-right: 1px solid var(--border-structural);">
-    <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px;">Active Jobs</div>
-    <div style="font-family: var(--font-mono); font-weight: 700; font-size: var(--text-h1); color: var(--green);">24</div>
+  <div class="stat-cell">
+    <div class="stat-label">Active Jobs</div>
+    <div class="stat-value" style="color: var(--green);">24</div>
   </div>
-  <div style="padding: 20px 24px;">
-    <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px;">Errors (24h)</div>
-    <div style="font-family: var(--font-mono); font-weight: 700; font-size: var(--text-h1); color: var(--pink);">2</div>
+  <div class="stat-cell">
+    <div class="stat-label">Errors (24h)</div>
+    <div class="stat-value" style="color: var(--pink);">2</div>
   </div>
 </div>
 ```
@@ -297,16 +366,16 @@ Color guide for stat values:
 ### Variant A — Flat (inline title)
 
 ```html
-<div style="border: 1px solid var(--border-subtle); background: var(--bg-surface-dim); padding: 20px;">
-  <div style="font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;">Cluster Info</div>
+<div class="quiet-card" style="padding: var(--space-5);">
+  <div class="panel-header-title" style="margin-bottom: var(--space-4);">Cluster Info</div>
   <div style="display: flex; flex-direction: column; gap: 14px;">
     <div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Region</div>
-      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-primary);">AP-Northeast-1 (Tokyo)</div>
+      <div class="kv-label">Region</div>
+      <div class="kv-value">AP-Northeast-1 (Tokyo)</div>
     </div>
     <div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">GPU Type</div>
-      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-primary);">NVIDIA H100 80GB</div>
+      <div class="kv-label">GPU Type</div>
+      <div class="kv-value">NVIDIA H100 80GB</div>
     </div>
   </div>
 </div>
@@ -315,24 +384,24 @@ Color guide for stat values:
 ### Variant B — Header divider
 
 ```html
-<div style="border: 1px solid var(--border-subtle); background: var(--bg-surface-dim);">
-  <div style="padding: 16px 20px; border-bottom: 1px solid var(--border-structural);">
-    <div style="font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.1em;">Configuration</div>
+<div class="quiet-card">
+  <div class="panel-header">
+    <div class="panel-header-title">Configuration</div>
   </div>
-  <div style="padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+  <div style="padding: var(--space-5); display: flex; flex-direction: column; gap: 14px;">
     <div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Endpoint</div>
-      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan);">https://api.nexus.io/health</div>
+      <div class="kv-label">Endpoint</div>
+      <div class="kv-value" style="color: var(--cyan);">https://api.nexus.io/health</div>
     </div>
     <div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Alert Threshold</div>
-      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--yellow);">200ms</div>
+      <div class="kv-label">Alert Threshold</div>
+      <div class="kv-value" style="color: var(--yellow);">200ms</div>
     </div>
     <div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">Regions</div>
-      <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px;">
-        <span class="cyber-badge" style="font-size: 0.55rem; padding: 2px 7px;">AP-NE-1</span>
-        <span class="cyber-badge" style="font-size: 0.55rem; padding: 2px 7px;">US-E-1</span>
+      <div class="kv-label">Regions</div>
+      <div style="display: flex; gap: var(--space-1); flex-wrap: wrap; margin-top: var(--space-1);">
+        <span class="cyber-badge sm">AP-NE-1</span>
+        <span class="cyber-badge sm">US-E-1</span>
       </div>
     </div>
   </div>
@@ -413,18 +482,18 @@ Full detail page: page header with breadcrumb + title + badge + actions, stat ro
 
 ## Form Layout (composed)
 
-Settings/create form inside a quiet card with header, 2-column grid, toggles, and action footer.
+Settings/create form with header, 2-column grid, toggles, and action footer. This example uses a quiet card (appropriate when the form is one of several panels on a page). When the form is the **sole content** of a page, wrap it in `.cyber-card` instead for the loud treatment.
 
 ```html
-<div style="max-width: 480px; border: 1px solid var(--border-subtle); background: var(--bg-surface-dim);">
+<div class="quiet-card" style="max-width: 480px;">
   <!-- Header -->
-  <div style="padding: 20px 24px; border-bottom: 1px solid var(--border-structural);">
-    <div style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--text-primary); margin-bottom: 4px;">MONITOR_CONFIG</div>
-    <div style="font-family: var(--font-body); font-size: 0.8rem; color: var(--text-muted);">Configure endpoint monitoring settings</div>
+  <div class="panel-header">
+    <div style="font-family: var(--font-pixel); font-size: var(--text-label); color: var(--text-primary); margin-bottom: var(--space-1);">MONITOR_CONFIG</div>
+    <div style="font-family: var(--font-body); font-size: var(--text-sm); color: var(--text-muted);">Configure endpoint monitoring settings</div>
   </div>
 
   <!-- Form body -->
-  <div style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+  <div style="padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-5);">
     <!-- Full-width field -->
     <div>
       <label class="cyber-label">Endpoint URL <span style="color: var(--pink);">*</span></label>
@@ -432,7 +501,7 @@ Settings/create form inside a quiet card with header, 2-column grid, toggles, an
     </div>
 
     <!-- 2-column row -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
       <div>
         <label class="cyber-label">Method</label>
         <select class="cyber-select"><option>GET</option><option>POST</option></select>
@@ -447,7 +516,7 @@ Settings/create form inside a quiet card with header, 2-column grid, toggles, an
     <div>
       <label class="cyber-label">Alert Threshold (ms)</label>
       <input type="text" class="cyber-input error" value="50">
-      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--pink); margin-top: 4px;">&#9888; Value too low</div>
+      <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--pink); margin-top: var(--space-1);">&#9888; Value too low</div>
     </div>
 
     <!-- Divider -->
@@ -467,7 +536,7 @@ Settings/create form inside a quiet card with header, 2-column grid, toggles, an
   </div>
 
   <!-- Footer actions -->
-  <div style="padding: 16px 24px; border-top: 1px solid var(--border-structural); display: flex; justify-content: flex-end; gap: 10px;">
+  <div style="padding: var(--space-4) var(--space-6); border-top: 1px solid var(--border-structural); display: flex; justify-content: flex-end; gap: 10px;">
     <button class="cyber-btn cyan sm" style="border-color: var(--border-medium); color: var(--text-primary);"><span>Cancel</span></button>
     <button class="cyber-btn cyan sm"><span>Save Changes</span></button>
   </div>

@@ -93,15 +93,27 @@ Or via CSS `@import`:
   --font-mono:  'JetBrains Mono', monospace;
   --font-jp:    'Noto Sans JP', sans-serif;
 
-  /* ── Type Scale ── */
-  --text-hero:  2.2rem;
-  --text-h1:    1.4rem;
+  /* ── Type Scale — Display (rare: hero/landing pages, large stat values) ── */
+  --text-display: 2.2rem;
+  --text-stat:    1.4rem;
+
+  /* ── Type Scale — Headings ── */
   --text-h2:    1.1rem;
   --text-h3:    1rem;
-  --text-body:  0.85rem;
-  --text-sm:    0.75rem;
-  --text-xs:    0.7rem;
-  --text-micro: 0.6rem;
+
+  /* ── Type Scale — Working Range (used in most UI) ── */
+  --text-body:  0.9rem;
+  --text-sm:    0.8rem;
+  --text-xs:    0.75rem;
+  --text-label: 0.7rem;
+  --text-micro: 0.65rem;
+  --text-nano:  0.6rem;
+
+  /* ── Letter Spacing (pair with uppercase JetBrains Mono) ── */
+  --tracking-normal:  0.1em;
+  --tracking-wide:    0.12em;
+  --tracking-wider:   0.15em;
+  --tracking-widest:  0.2em;
 
   /* ── Line Heights ── */
   --leading-tight:  1.2;
@@ -233,16 +245,20 @@ body {
 
 ## Typography Usage Guide
 
+This system prioritizes **readability** within a dense, terminal-inspired aesthetic. The working range for most UI is **0.6rem–0.9rem**. Display sizes (`--text-display`, `--text-stat`) are rare — use only for hero sections and large stat values.
+
 ### Press Start 2P — Pixel Headers
 
-| Size | Use | Example |
-|------|-----|---------|
-| `2.2rem` | Page titles | `PAGE_TITLE` |
-| `1.1rem` | Section headers | `SECTION_HEADER` |
-| `0.85rem` | Card titles | `CARD_TITLE` |
-| `0.7rem` | Small labels, modal titles | `SMALL_LABEL` |
-| `0.6rem` | Nav items, brand labels | `NAV_ITEM` |
-| `0.5rem` | Brand name (topbar) | `NEXUS` |
+This font renders large — **always use it smaller than you'd expect**. Never above `1.1rem` in application UI.
+
+| Size | Token | Use | Example |
+|------|-------|-----|---------|
+| `clamp(0.8rem, 1.5vw, 1.1rem)` | — | Page titles (responsive) | `PAGE_TITLE` |
+| `0.9rem` | `--text-body` | Section headers | `SECTION_HEADER` |
+| `0.85rem` | — | Card/detail page titles | `CARD_TITLE` |
+| `0.7rem` | `--text-label` | Small labels, modal titles | `SMALL_LABEL` |
+| `0.65rem` | `--text-micro` | Nav items, brand labels | `NAV_ITEM` |
+| `0.6rem` | `--text-nano` | Brand name (topbar) | `NEXUS` |
 
 - **Weight**: 400 only (single weight font)
 - **Avoid**: Body text, descriptions — poor readability at length
@@ -250,37 +266,44 @@ body {
 
 ### Inter — Readable Body Text
 
-| Size | Weight | Use |
-|------|--------|-----|
-| `1.4rem` | 700 (bold) | Hero subheading |
-| `1rem` | 600 (semibold) | Card/dialog titles |
-| `0.9rem` | 500 (medium) | Body primary |
-| `0.85rem` | 400 (regular) | Body default, descriptions |
-| `0.8rem` | 400 (regular) | Small body, helper text |
+| Size | Token | Weight | Use |
+|------|-------|--------|-----|
+| `1.4rem` | `--text-stat` | 700 (bold) | Hero subheading (rare — Inter is used here only on landing/hero pages) |
+| `1rem` | `--text-h3` | 600 (semibold) | Card/dialog titles |
+| `0.95rem` | — | 500 (medium) | Body primary (emphasis) |
+| `0.9rem` | `--text-body` | 400 (regular) | Body default, descriptions |
+| `0.85rem` | — | 400 (regular) | Small body, helper text |
 
-- **Line-height**: 1.6–1.8 for body, 1.2–1.4 for headings
+- **Line-height**: `var(--leading-normal)` (1.6) for body, `var(--leading-tight)` (1.2) for headings
 - Primary readable font — use for anything requiring comfortable reading
 
-### JetBrains Mono — Technical Workhorse
+### JetBrains Mono — Technical Workhorse (dominant UI font)
 
-| Size | Weight | Use |
-|------|--------|-----|
-| `2rem` | 700 (bold) | Large stat values |
-| `1.4rem` | 700 (bold) | Stat row values |
-| `1.1rem` | 700 (bold) | Technical headers |
-| `0.85rem` | 400 | Code blocks, data, button text |
-| `0.8rem` | 400 | Table cells, inline code |
-| `0.75rem` | 400 | Table data, breadcrumbs |
-| `0.72rem` | 400 | Nav links, sidebar items |
-| `0.7rem` | 400 | Labels, metadata, timestamps |
-| `0.65rem` | 400/700 | Badges, small labels, toast messages |
-| `0.6rem` | 400/700 | Micro labels, category tags |
-| `0.55rem` | 400 | Nav group labels, version text |
+This is the **most-used font** in the system — buttons, labels, inputs, tables, badges, nav, stats, and all technical chrome.
 
-- **Label pattern**: `text-transform: uppercase; letter-spacing: 0.12–0.15em`
+| Size | Token | Weight | Use |
+|------|-------|--------|-----|
+| `2rem` | — | 700 (bold) | Large stat values (rare) |
+| `1.4rem` | `--text-stat` | 700 (bold) | Stat row values |
+| `1.1rem` | `--text-h2` | 700 (bold) | Technical headers |
+| `0.9rem` | `--text-body` | 400 | Code blocks, data, button text |
+| `0.8rem` | `--text-sm` | 400 | Table cells, inline code |
+| `0.75rem` | `--text-xs` | 400 | Table headers, breadcrumbs, tabs |
+| `0.7rem` | `--text-label` | 400 | Labels, metadata, timestamps |
+| `0.65rem` | `--text-micro` | 400/700 | Badges, small labels, toast messages |
+| `0.6rem` | `--text-nano` | 400/700 | Micro labels, category tags |
+
+- **Label pattern**: `text-transform: uppercase; letter-spacing: var(--tracking-wide)` to `var(--tracking-wider)`
+- **Letter-spacing tiers**:
+  - `var(--tracking-normal)` (0.1em) — table headers, tabs, alert titles
+  - `var(--tracking-wide)` (0.12em) — stat labels, KV keys, metadata
+  - `var(--tracking-wider)` (0.15em) — buttons, form labels, nav items
+  - `var(--tracking-widest)` (0.2em) — nav section/group labels
 - Use for: code, data, buttons, labels, tables, forms, badges, stats, KV panels
 
-### Noto Sans JP — Decorative Only
+### Noto Sans JP — Decorative Only (optional)
+
+This font is purely atmospheric. If not using Japanese decorative text, you can omit it from the Google Fonts import to save a network request.
 
 | Size | Weight | Opacity | Use |
 |------|--------|---------|-----|

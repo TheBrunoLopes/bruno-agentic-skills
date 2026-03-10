@@ -19,7 +19,7 @@ Buttons, cards, forms, tables, alerts, badges, and tabs. All CSS uses `var()` re
   font-family: var(--font-mono);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--tracking-wider);
   font-size: var(--text-body);
   cursor: pointer;
   overflow: hidden;
@@ -148,7 +148,7 @@ Buttons, cards, forms, tables, alerts, badges, and tabs. All CSS uses `var()` re
 | `.pink` | Pink border/text, pink slide-fill, pink hover glow |
 | `.yellow` | Yellow border/text, yellow slide-fill, yellow hover glow |
 | `.green` | Green border/text, green slide-fill, green hover glow |
-| `.sm` | Smaller padding (8px 20px), font-size 0.7rem, no min-width |
+| `.sm` | Smaller padding (8px 20px), font-size `var(--text-xs)` (0.75rem), no min-width |
 | `.disabled` | Opacity 0.35, no pointer events |
 
 ---
@@ -191,20 +191,20 @@ Buttons, cards, forms, tables, alerts, badges, and tabs. All CSS uses `var()` re
 </div>
 ```
 
-### Quiet Card (inline styles — intentionally no class)
+### Quiet Card (`.quiet-card`)
 
-Use inline styles to prevent agents from adding glow/corners. This is the pattern for supporting content.
+Supporting content wrapper — subtle border, no glow, no corner decorations. Defined in `patterns-layout.md`.
 
 ```html
 <!-- Quiet card — structural / supporting -->
-<div style="padding: 20px; border: 1px solid var(--border-subtle); background: var(--bg-surface-dim);">
+<div class="quiet-card" style="padding: var(--space-5);">
   ...content...
 </div>
 
-<!-- Ghost card — minimal stat -->
-<div style="padding: 20px; border: 1px solid var(--border-subtle); background: var(--bg-surface-faint);">
-  <div>Label</div>
-  <div>2.4M</div>
+<!-- Ghost card — minimal stat (fainter background) -->
+<div class="quiet-card" style="padding: var(--space-5); background: var(--bg-surface-faint);">
+  <div class="stat-label">Requests</div>
+  <div class="stat-value" style="color: var(--cyan);">2.4M</div>
 </div>
 ```
 
@@ -250,9 +250,9 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--tracking-wider);
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 ```
 
@@ -313,7 +313,7 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   gap: 10px;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   color: var(--text-primary);
 }
 .cyber-checkbox input { display: none; }
@@ -346,7 +346,7 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   gap: 12px;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
 }
 .cyber-toggle input { display: none; }
 .cyber-toggle .track {
@@ -458,7 +458,7 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   text-transform: uppercase;
   font-weight: 700;
   font-size: var(--text-sm);
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-normal);
   border-bottom: 1px solid var(--cyan-30);
 }
 .cyber-table tbody td {
@@ -492,7 +492,7 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   background: transparent;
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   cursor: pointer;
   transition: var(--transition-default);
 }
@@ -572,8 +572,8 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   font-family: var(--font-mono);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
+  letter-spacing: var(--tracking-normal);
+  font-size: var(--text-sm);
   margin-bottom: 6px;
 }
 .cyber-alert.info .alert-title    { color: var(--cyan); }
@@ -627,10 +627,10 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   align-items: center;
   padding: 4px 12px;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: var(--text-micro);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-normal);
   border: 1px solid;
 }
 
@@ -693,7 +693,7 @@ Use inline styles to prevent agents from adding glow/corners. This is the patter
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-normal);
   color: var(--text-secondary);
   border-bottom: 2px solid transparent;
   cursor: pointer;

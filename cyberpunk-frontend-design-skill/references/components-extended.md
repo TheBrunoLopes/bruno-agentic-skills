@@ -14,7 +14,7 @@ Code blocks, loading states, progress bars, tooltips, toasts, skeletons, avatars
   border: 1px solid var(--cyan-15);
   padding: 20px;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   line-height: 1.8;
   overflow-x: auto;
   position: relative;
@@ -28,7 +28,7 @@ Code blocks, loading states, progress bars, tooltips, toasts, skeletons, avatars
   text-transform: uppercase;
   color: var(--bg-deep);
   background: var(--cyan);
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-normal);
 }
 
 /* ── Syntax highlighting ── */
@@ -45,7 +45,7 @@ Code blocks, loading states, progress bars, tooltips, toasts, skeletons, avatars
 /* Inline code pattern */
 code {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   color: var(--cyan);
   background: var(--cyan-08);
   padding: 2px 8px;
@@ -65,7 +65,7 @@ code {
 </div>
 
 <!-- Inline code -->
-<code style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); background: var(--cyan-08); padding: 2px 8px; border: 1px solid var(--cyan-15);">cyber-card</code>
+<code>cyber-card</code>
 ```
 
 ---
@@ -205,7 +205,7 @@ code {
   border: 1px solid var(--cyan-20);
   padding: 6px 12px;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: var(--text-micro);
   color: var(--text-primary);
   white-space: nowrap;
   pointer-events: none;
@@ -290,7 +290,7 @@ code {
 }
 .cyber-toast .toast-content { flex: 1; }
 .cyber-toast .toast-title {
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 3px;
@@ -362,10 +362,7 @@ code {
 ### CSS
 
 ```css
-@keyframes skeletonShimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
+/* skeletonShimmer keyframe is defined in tokens.md — do not duplicate here */
 
 .skeleton {
   background: linear-gradient(90deg,
@@ -375,7 +372,6 @@ code {
   );
   background-size: 200% 100%;
   animation: skeletonShimmer 1.8s ease-in-out infinite;
-  border-radius: 2px;
 }
 
 .skeleton-text {
