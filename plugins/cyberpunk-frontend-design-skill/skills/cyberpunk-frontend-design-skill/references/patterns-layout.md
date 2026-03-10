@@ -504,11 +504,11 @@ Settings/create form with header, 2-column grid, toggles, and action footer. Thi
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
       <div>
         <label class="cyber-label">Method</label>
-        <select class="cyber-select"><option>GET</option><option>POST</option></select>
+        <div class="cyber-select"><!-- trigger + dropdown --></div>
       </div>
       <div>
         <label class="cyber-label">Interval</label>
-        <select class="cyber-select"><option>30s</option><option selected>60s</option></select>
+        <div class="cyber-select"><!-- trigger + dropdown --></div>
       </div>
     </div>
 

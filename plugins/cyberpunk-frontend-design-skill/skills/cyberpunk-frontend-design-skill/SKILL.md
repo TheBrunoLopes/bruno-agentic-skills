@@ -161,7 +161,7 @@ Read `references/components-core.md` and `references/components-extended.md` for
 | Button | `.cyber-btn` | Color: `.cyan` `.pink` `.yellow` `.green`. Size: `.sm`. Also `.icon-btn` for icon-only |
 | Input | `.cyber-input` | Cyan-tinted bg, `.error` for red border. Pair with `.cyber-label` |
 | Textarea | `.cyber-textarea` | Same as input, `min-height: 100px` |
-| Select | `.cyber-select` | Custom chevron, same bg tint |
+| Select | `.cyber-select` | Custom dropdown: `.cyber-select-trigger`, `.cyber-select-dropdown`, `.cyber-select-option` |
 | Table | `.cyber-table` | Cyan header border, row hover, corner decorations, `.pagination-btn` |
 | Alert | `.cyber-alert` | Variants: `.info` `.warning` `.error` `.success` |
 | Badge | `.cyber-badge` | Outline: `.cyan` `.pink` `.yellow` `.green`. Filled: `.filled-cyan` etc. Size: `.sm` for compact |

@@ -281,27 +281,32 @@ Supporting content wrapper — subtle border, no glow, no corner decorations. De
 
 ### Select (`.cyber-select`)
 
+### CSS
+
 ```css
-.cyber-select {
-  width: 100%;
-  padding: 12px 16px;
-  background: var(--bg-input);
-  border: 1px solid var(--cyan-30);
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: var(--text-body);
-  outline: none;
-  appearance: none;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300f0ff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
+.cyber-select { position: relative; width: 100%; }
+.cyber-select-trigger {
+  width: 100%; padding: 12px 16px; background: var(--bg-input); border: 1px solid var(--cyan-30);
+  color: var(--text-primary); font-family: var(--font-mono); font-size: var(--text-body);
+  outline: none; transition: var(--transition-default); cursor: pointer; text-align: left;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
 }
-.cyber-select:focus {
-  background-color: var(--bg-input-focus);
-  border-color: var(--cyan);
-  box-shadow: var(--shadow-glow-cyan);
+.cyber-select-trigger:hover { border-color: var(--cyan); }
+.cyber-select-trigger:focus { background: var(--bg-input-focus); border-color: var(--cyan); box-shadow: var(--shadow-glow-cyan); }
+.cyber-select-dropdown {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 100;
+  background: var(--bg-panel); border: 1px solid var(--cyan-30);
+  box-shadow: var(--shadow-dropdown), 0 0 15px var(--cyan-10);
+  backdrop-filter: blur(10px); overflow: hidden;
 }
+.cyber-select-option {
+  padding: 10px 16px; font-family: var(--font-mono); font-size: var(--text-body);
+  color: var(--text-secondary); cursor: pointer; transition: all 0.12s ease;
+  border-bottom: 1px solid var(--border-structural);
+}
+.cyber-select-option:last-child { border-bottom: none; }
+.cyber-select-option:hover { background: var(--cyan-08); color: var(--text-primary); }
+.cyber-select-option.active { color: var(--cyan); background: var(--cyan-05); }
 ```
 
 ### Checkbox (`.cyber-checkbox`)
@@ -390,10 +395,16 @@ Supporting content wrapper — subtle border, no glow, no corner decorations. De
 
 <!-- Select -->
 <label class="cyber-label">Region</label>
-<select class="cyber-select">
-  <option>AP-NORTHEAST-1 (Tokyo)</option>
-  <option>EU-WEST-1 (Ireland)</option>
-</select>
+<div class="cyber-select">
+  <button type="button" class="cyber-select-trigger">
+    <span>AP-NORTHEAST-1 (Tokyo)</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div class="cyber-select-dropdown">
+    <div class="cyber-select-option active">AP-NORTHEAST-1 (Tokyo)</div>
+    <div class="cyber-select-option">EU-WEST-1 (Ireland)</div>
+  </div>
+</div>
 
 <!-- Checkbox -->
 <label class="cyber-checkbox">
