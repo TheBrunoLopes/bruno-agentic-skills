@@ -1,0 +1,13 @@
+{
+  "listing": {
+    "title": "Cyberpunk Frontend Design System",
+    "tagline": "Generate consistent cyberpunk-themed UIs with neon accents, CRT effects, and pixel aesthetics",
+    "categories": ["frontend", "design-system", "ui"],
+    "tags": ["cyberpunk", "css", "react", "tailwind", "design-tokens", "neon", "dark-theme"],
+    "icon": "terminal"
+  },
+  "install": {
+    "repository": "TheBrunoLopes/bruno-agentic-skills",
+    "branch": "main"
+  }
+}
