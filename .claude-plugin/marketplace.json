@@ -1,13 +1,13 @@
 {
-  "listing": {
-    "title": "Cyberpunk Frontend Design System",
-    "tagline": "Generate consistent cyberpunk-themed UIs with neon accents, CRT effects, and pixel aesthetics",
-    "categories": ["frontend", "design-system", "ui"],
-    "tags": ["cyberpunk", "css", "react", "tailwind", "design-tokens", "neon", "dark-theme"],
-    "icon": "terminal"
+  "name": "bruno-agentic-skills",
+  "owner": {
+    "name": "TheBrunoLopes"
   },
-  "install": {
-    "repository": "TheBrunoLopes/bruno-agentic-skills",
-    "branch": "main"
-  }
+  "plugins": [
+    {
+      "name": "cyberpunk-frontend-design-skill",
+      "source": "./skills/cyberpunk-frontend-design-skill",
+      "description": "Cyberpunk UI design system for building dark-themed, terminal-inspired interfaces with neon accents, CRT effects, and pixel aesthetics"
+    }
+  ]
 }
