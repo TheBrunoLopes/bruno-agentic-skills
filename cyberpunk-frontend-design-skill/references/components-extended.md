@@ -296,7 +296,7 @@ code {
   margin-bottom: 3px;
 }
 .cyber-toast .toast-message {
-  font-size: 0.65rem;
+  font-size: var(--text-micro);
   color: var(--text-tertiary);
   line-height: 1.5;
 }
@@ -452,8 +452,8 @@ Text-initials avatars with color variants and sizing.
 /* ── Sizes ── */
 .cyber-avatar.xs { width: 22px; height: 22px; font-size: 0.45rem; }
 .cyber-avatar.sm { width: 28px; height: 28px; font-size: 0.55rem; }
-.cyber-avatar.md { width: 36px; height: 36px; font-size: 0.65rem; }
-.cyber-avatar.lg { width: 48px; height: 48px; font-size: 0.8rem; }
+.cyber-avatar.md { width: 36px; height: 36px; font-size: var(--text-micro); }
+.cyber-avatar.lg { width: 48px; height: 48px; font-size: var(--text-sm); }
 .cyber-avatar.xl { width: 64px; height: 64px; font-size: 1rem; }
 
 /* ── Color variants ── */

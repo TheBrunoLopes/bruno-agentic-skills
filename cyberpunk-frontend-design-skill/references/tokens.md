@@ -100,6 +100,7 @@ Or via CSS `@import`:
   /* ── Type Scale — Headings ── */
   --text-h2:    1.1rem;
   --text-h3:    1rem;
+  --text-title: 0.9rem;  /* Same value as --text-body — use for Press Start 2P titles and section headers */
 
   /* ── Type Scale — Working Range (used in most UI) ── */
   --text-body:  0.9rem;
@@ -254,8 +255,7 @@ This font renders large — **always use it smaller than you'd expect**. Never a
 | Size | Token | Use | Example |
 |------|-------|-----|---------|
 | `clamp(0.8rem, 1.5vw, 1.1rem)` | — | Page titles (responsive) | `PAGE_TITLE` |
-| `0.9rem` | `--text-body` | Section headers | `SECTION_HEADER` |
-| `0.85rem` | — | Card/detail page titles | `CARD_TITLE` |
+| `0.9rem` | `--text-title` | Section headers, card titles | `SECTION_HEADER` |
 | `0.7rem` | `--text-label` | Small labels, modal titles | `SMALL_LABEL` |
 | `0.65rem` | `--text-micro` | Nav items, brand labels | `NAV_ITEM` |
 | `0.6rem` | `--text-nano` | Brand name (topbar) | `NEXUS` |

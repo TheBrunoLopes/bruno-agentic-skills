@@ -28,11 +28,11 @@ Composed layout patterns built from components. All CSS uses `var()` references 
   display: block;
   padding: 10px 24px;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   color: var(--text-primary);
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-normal);
   transition: var(--transition-default);
   border-left: 2px solid transparent;
 }
@@ -51,7 +51,7 @@ Composed layout patterns built from components. All CSS uses `var()` references 
   font-family: var(--font-mono);
   font-size: var(--text-micro);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--tracking-widest);
   color: var(--text-secondary);
 }
 ```
@@ -69,7 +69,7 @@ Used in app-shell sidebars (not the design system nav).
   text-decoration: none;
   border-left: 2px solid transparent;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: var(--text-micro);
   color: var(--text-primary);
   transition: var(--transition-nav);
 }
@@ -95,7 +95,7 @@ Used in app-shell sidebars (not the design system nav).
 .sidebar-nav-item.lg {
   gap: 10px;
   padding: 10px 12px;
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
 }
 ```
 
@@ -110,8 +110,8 @@ Used in app-shell sidebars (not the design system nav).
         <svg width="14" height="14" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <div>
-        <div style="font-family: var(--font-pixel); font-size: 0.55rem; color: var(--cyan);">NEXUS</div>
-        <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted);">v2.4.1</div>
+        <div style="font-family: var(--font-pixel); font-size: var(--text-nano); color: var(--cyan);">NEXUS</div>
+        <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted);">v2.4.1</div>
       </div>
     </div>
   </div>
@@ -120,13 +120,13 @@ Used in app-shell sidebars (not the design system nav).
   <div style="padding: 12px 16px;">
     <div style="position: relative;">
       <svg width="13" height="13" fill="none" stroke="var(--text-faint)" stroke-width="1.5" viewBox="0 0 24 24" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <div style="padding: 8px 10px 8px 32px; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-faint); background: rgba(255,255,255,0.02);">Search...</div>
+      <div style="padding: 8px 10px 8px 32px; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-faint); background: rgba(255,255,255,0.02);">Search...</div>
     </div>
   </div>
 
   <!-- Nav Group -->
   <div style="padding: 4px 8px;">
-    <div style="padding: 6px 12px; font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-faint);">Main</div>
+    <div style="padding: 6px 12px; font-family: var(--font-mono); font-size: var(--text-nano); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--text-faint);">Main</div>
 
     <!-- Active item -->
     <a href="#" class="sidebar-nav-item active lg">
@@ -144,7 +144,7 @@ Used in app-shell sidebars (not the design system nav).
     <a href="#" class="sidebar-nav-item lg">
       <svg width="16" height="16" fill="none" stroke="var(--text-tertiary)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       <span>Monitors</span>
-      <span class="cyber-badge filled-green" style="margin-left: auto; font-size: 0.5rem; padding: 2px 6px;">12</span>
+      <span class="cyber-badge filled-green" style="margin-left: auto; font-size: var(--text-nano); padding: 2px 6px;">12</span>
     </a>
   </div>
 
@@ -158,8 +158,8 @@ Used in app-shell sidebars (not the design system nav).
     <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px;">
       <div class="cyber-avatar sm">AK</div>
       <div>
-        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-primary);">Operator</div>
-        <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted);">admin@nexus.io</div>
+        <div style="font-family: var(--font-mono); font-size: var(--text-label); color: var(--text-primary);">Operator</div>
+        <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted);">admin@nexus.io</div>
       </div>
     </div>
   </div>
@@ -179,12 +179,12 @@ Used in app-shell sidebars (not the design system nav).
       <div style="width: 24px; height: 24px; border: 1px solid var(--cyan); display: flex; align-items: center; justify-content: center;">
         <svg width="12" height="12" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
-      <span style="font-family: var(--font-pixel); font-size: 0.5rem; color: var(--cyan);">NEXUS</span>
+      <span style="font-family: var(--font-pixel); font-size: var(--text-nano); color: var(--cyan);">NEXUS</span>
     </div>
     <!-- Nav links -->
-    <a href="#" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--cyan); text-decoration: none; padding: 4px 0; border-bottom: 1px solid var(--cyan);">Dashboard</a>
-    <a href="#" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-primary); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent;">Projects</a>
-    <a href="#" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-primary); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent;">Monitors</a>
+    <a href="#" style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--cyan); text-decoration: none; padding: 4px 0; border-bottom: 1px solid var(--cyan);">Dashboard</a>
+    <a href="#" style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-primary); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent;">Projects</a>
+    <a href="#" style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-primary); text-decoration: none; padding: 4px 0; border-bottom: 1px solid transparent;">Monitors</a>
   </div>
 
   <!-- Right: Search + Actions + User -->
@@ -192,9 +192,9 @@ Used in app-shell sidebars (not the design system nav).
     <!-- Search trigger -->
     <div style="position: relative;">
       <svg width="13" height="13" fill="none" stroke="var(--text-faint)" stroke-width="1.5" viewBox="0 0 24 24" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <div style="padding: 7px 10px 7px 32px; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-faint); background: rgba(255,255,255,0.02); width: 180px; display: flex; justify-content: space-between;">
+      <div style="padding: 7px 10px 7px 32px; border: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-faint); background: rgba(255,255,255,0.02); width: 180px; display: flex; justify-content: space-between;">
         <span>Search...</span>
-        <span style="border: 1px solid var(--border-medium); padding: 0 5px; font-size: 0.55rem; color: var(--text-ghost);">&#8984;K</span>
+        <span style="border: 1px solid var(--border-medium); padding: 0 5px; font-size: var(--text-nano); color: var(--text-ghost);">&#8984;K</span>
       </div>
     </div>
     <!-- Notification bell -->
@@ -421,13 +421,13 @@ Full detail page: page header with breadcrumb + title + badge + actions, stat ro
     <div style="display: flex; align-items: center; justify-content: space-between;">
       <div>
         <!-- Breadcrumb -->
-        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+        <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
           <a href="#" style="color: var(--text-muted); text-decoration: none;">CLUSTERS</a>
           <span style="color: var(--text-faint);">/</span>
           <span style="color: var(--cyan);">AP-NORTHEAST-1</span>
         </div>
         <!-- Title -->
-        <h3 style="font-family: var(--font-pixel); font-size: 0.85rem; color: var(--text-primary);">GPU_CLUSTER_042</h3>
+        <h3 style="font-family: var(--font-pixel); font-size: var(--text-title); color: var(--text-primary);">GPU_CLUSTER_042</h3>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
         <span class="cyber-badge filled-green">HEALTHY</span>

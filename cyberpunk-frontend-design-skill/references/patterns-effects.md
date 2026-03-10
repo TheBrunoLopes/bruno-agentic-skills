@@ -231,7 +231,7 @@ Visual effects, decorations, and interactive patterns. All CSS uses `var()` refe
 ```html
 <div class="cyber-timeline">
   <div class="cyber-timeline-item">
-    <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px;">Phase 04 // Live</div>
+    <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--yellow); text-transform: uppercase; letter-spacing: var(--tracking-wider); margin-bottom: 4px;">Phase 04 // Live</div>
     <div style="font-family: var(--font-body); font-weight: 600; margin-bottom: 4px;">Public Launch</div>
     <div style="font-family: var(--font-body); font-size: var(--text-body); color: var(--text-secondary);">Product goes live. Monitoring dashboards active.</div>
     <div style="margin-top: 8px; display: flex; gap: 6px;">
@@ -240,7 +240,7 @@ Visual effects, decorations, and interactive patterns. All CSS uses `var()` refe
     </div>
   </div>
   <div class="cyber-timeline-item">
-    <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px;">Phase 03 // Beta</div>
+    <div style="font-family: var(--font-mono); font-size: var(--text-micro); color: var(--yellow); text-transform: uppercase; letter-spacing: var(--tracking-wider); margin-bottom: 4px;">Phase 03 // Beta</div>
     <div style="font-family: var(--font-body); font-weight: 600; margin-bottom: 4px;">Closed Beta</div>
     <div style="font-family: var(--font-body); font-size: var(--text-body); color: var(--text-secondary);">Invite-only access for testing.</div>
   </div>
@@ -281,7 +281,7 @@ Cyberpunk-filtered portrait with offset frames, overlays, decorative bars, and c
   <!-- Status indicator -->
   <div style="position: absolute; bottom: 12px; right: 12px; z-index: 30; display: flex; align-items: center; gap: 6px; background: rgba(5,5,10,0.8); padding: 4px 10px; border: 1px solid var(--cyan-30); backdrop-filter: blur(4px);">
     <div style="width: 7px; height: 7px; background: var(--cyan); border-radius: 50%; animation: pulse 1.5s ease infinite;"></div>
-    <span style="font-family: var(--font-mono); font-size: 0.56rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.15em;">Online</span>
+    <span style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--cyan); text-transform: uppercase; letter-spacing: var(--tracking-wider);">Online</span>
   </div>
 </div>
 ```
@@ -334,8 +334,8 @@ Image filter specs:
 <div id="myModal" class="cyber-modal-backdrop" onclick="if(event.target===this) this.classList.remove('active')">
   <div class="cyber-modal">
     <div class="cyber-card" style="padding: 32px;">
-      <div style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--pink); margin-bottom: 16px;">&#9888; CONFIRM_ACTION</div>
-      <div style="font-family: var(--font-body); font-size: 0.9rem; color: var(--text-primary); margin-bottom: 24px; line-height: 1.6;">
+      <div style="font-family: var(--font-pixel); font-size: var(--text-label); color: var(--pink); margin-bottom: 16px;">&#9888; CONFIRM_ACTION</div>
+      <div style="font-family: var(--font-body); font-size: var(--text-body); color: var(--text-primary); margin-bottom: 24px; line-height: 1.6;">
         Are you sure you want to proceed? This action cannot be undone.
       </div>
       <div style="display: flex; gap: 12px; justify-content: flex-end;">

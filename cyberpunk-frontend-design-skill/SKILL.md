@@ -111,7 +111,7 @@ This system is opinionated but flexible — the aesthetic is fixed, but how you 
 
 All tokens are defined as CSS custom properties in `references/tokens.md`. Copy the full `:root` block from that file into your stylesheet — every component and pattern references these via `var()`.
 
-**Key variable groups**: `--bg-*` (backgrounds), `--cyan`/`--pink`/`--yellow`/`--green` (accents + opacity scales at 03–40), `--text-*` (hierarchy), `--border-*` (structural), `--font-*` (4 families), `--text-display` through `--text-nano` (type scale), `--tracking-*` (letter-spacing), `--space-*` (spacing), `--transition-*`, `--shadow-*`, `--z-*`.
+**Key variable groups**: `--bg-*` (backgrounds), `--cyan`/`--pink`/`--yellow`/`--green` (accents + opacity scales at 03–40), `--text-*` (hierarchy), `--border-*` (structural), `--font-*` (4 families), `--text-display` through `--text-nano` (type scale, plus `--text-title` for headings), `--tracking-*` (letter-spacing), `--space-*` (spacing), `--transition-*`, `--shadow-*`, `--z-*`.
 
 Shared `@keyframes` animations (`spin`, `pulse`, `blink`, `skeletonShimmer`, `crtFlicker`, `glitchTop`, `glitchBottom`, `gridScroll`) are also in tokens.md.
 
@@ -128,7 +128,7 @@ This system is dense and terminal-inspired, but **readability comes first**. The
 
 **Working range** (95% of your UI):
 - **Page titles**: Press Start 2P at `clamp(0.8rem, 1.5vw, 1.1rem)`
-- **Section headers**: Press Start 2P at `0.85–0.9rem`
+- **Section headers / card titles**: Press Start 2P at `var(--text-title)` (0.9rem)
 - **Body text / inputs**: `var(--text-body)` (0.9rem) — Inter for prose, JetBrains Mono for data
 - **Table cells / code**: `var(--text-sm)` (0.8rem) JetBrains Mono
 - **Labels / table headers**: `var(--text-xs)` (0.75rem) uppercase JetBrains Mono

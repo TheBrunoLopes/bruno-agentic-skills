@@ -587,22 +587,22 @@ Supporting content wrapper — subtle border, no glow, no corner decorations. De
 ```html
 <div class="cyber-alert info">
   <div class="alert-title">&#9432; System Info</div>
-  <div style="font-size: 0.9rem; color: var(--text-primary);">All systems operating within normal parameters.</div>
+  <div style="font-size: var(--text-body); color: var(--text-primary);">All systems operating within normal parameters.</div>
 </div>
 
 <div class="cyber-alert success">
   <div class="alert-title">&#10003; Success</div>
-  <div style="font-size: 0.9rem; color: var(--text-primary);">Deployment completed successfully.</div>
+  <div style="font-size: var(--text-body); color: var(--text-primary);">Deployment completed successfully.</div>
 </div>
 
 <div class="cyber-alert warning">
   <div class="alert-title">&#9888; Warning</div>
-  <div style="font-size: 0.9rem; color: var(--text-primary);">Memory usage exceeding threshold.</div>
+  <div style="font-size: var(--text-body); color: var(--text-primary);">Memory usage exceeding threshold.</div>
 </div>
 
 <div class="cyber-alert error">
   <div class="alert-title">&gt;_ Critical Error</div>
-  <div style="font-size: 0.9rem; color: var(--text-primary);">Connection lost. Retrying...</div>
+  <div style="font-size: var(--text-body); color: var(--text-primary);">Connection lost. Retrying...</div>
 </div>
 ```
 
