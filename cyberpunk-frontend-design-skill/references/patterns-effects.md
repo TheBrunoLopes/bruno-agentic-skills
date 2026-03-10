@@ -66,7 +66,7 @@ Visual effects, decorations, and interactive patterns. All CSS uses `var()` refe
 <!-- Glitch text (decorative/landing page use — the 1.8rem size is an exception to the normal ≤1.1rem app UI rule for Press Start 2P) -->
 <h1 class="glitch" data-text="SYSTEM_ONLINE" style="font-family: var(--font-pixel); font-size: 1.8rem;">SYSTEM_ONLINE</h1>
 
-<!-- Combined: glitch + CRT flicker -->
+<!-- Combined: glitch + CRT flicker (decorative/landing — same 1.8rem exception as above) -->
 <h1 class="glitch crt-flicker" data-text="TITLE" style="font-family: var(--font-pixel); font-size: 1.8rem;">TITLE</h1>
 ```
 

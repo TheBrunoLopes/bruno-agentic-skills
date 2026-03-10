@@ -94,7 +94,7 @@ Key principles:
 - **Pink for danger/decoration**: Errors, destructive actions, corner accents
 - **Yellow for warnings/highlights**: Caution states, active status
 - **Green for success**: Confirmation, healthy states, positive metrics
-- **Loud vs Quiet hierarchy**: Every page should have **one loud focal element** — the main content the user came to see (a data table, a primary card, or the sole form on a page). That element gets `.cyber-card` with cyan border, glow, and pink corners. Everything else — supporting panels, secondary cards, metadata sections — uses quiet styling (inline styles, subtle borders). When a page has many panels, only the most important one is loud. Sidebar, topbar, and structural layout are always quiet
+- **Loud vs Quiet hierarchy**: Every page should have **one loud focal element** — the main content the user came to see (a data table, a primary card, or the sole form on a page). That element gets `.cyber-card` with cyan border, glow, and pink corners. Everything else — supporting panels, secondary cards, metadata sections — uses quiet styling (`.quiet-card` class, subtle borders). When a page has many panels, only the most important one is loud. Sidebar, topbar, and structural layout are always quiet
 
 ## Design Thinking — Before You Code
 
@@ -164,7 +164,7 @@ Read `references/components-core.md` and `references/components-extended.md` for
 | Select | `.cyber-select` | Custom chevron, same bg tint |
 | Table | `.cyber-table` | Cyan header border, row hover, corner decorations, `.pagination-btn` |
 | Alert | `.cyber-alert` | Variants: `.info` `.warning` `.error` `.success` |
-| Badge | `.cyber-badge` | Outline: `.cyan` `.pink` `.yellow` `.green`. Filled: `.filled-cyan` etc. (solid bg, dark text) |
+| Badge | `.cyber-badge` | Outline: `.cyan` `.pink` `.yellow` `.green`. Filled: `.filled-cyan` etc. Size: `.sm` for compact |
 | Code | `.cyber-code` | `data-lang` attribute, syntax classes: `.comment` `.keyword` `.string` `.function` `.variable` |
 | Tabs | `.cyber-tabs` > `.cyber-tab` | Bottom border active state, hover animation |
 | Modal | `.cyber-modal` | Centered, backdrop blur, `.cyber-modal-backdrop` overlay |

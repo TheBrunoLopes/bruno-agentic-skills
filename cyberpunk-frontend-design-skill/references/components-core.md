@@ -634,6 +634,9 @@ Supporting content wrapper — subtle border, no glow, no corner decorations. De
   border: 1px solid;
 }
 
+/* ── Size variant ── */
+.cyber-badge.sm { padding: 2px 7px; font-size: var(--text-nano); }
+
 /* ── Outline variants ── */
 .cyber-badge.cyan   { border-color: var(--cyan);   color: var(--cyan); }
 .cyber-badge.pink   { border-color: var(--pink);   color: var(--pink); }

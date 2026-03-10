@@ -440,8 +440,8 @@ Full detail page: page header with breadcrumb + title + badge + actions, stat ro
   </div>
 
   <!-- Stat row -->
-  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-bottom: 1px solid var(--border-subtle);">
-    <!-- ...stat cells (see Stat Row pattern)... -->
+  <div class="stat-row" style="grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border-subtle);">
+    <!-- ...stat cells (see Stat Row pattern above)... -->
   </div>
 
   <!-- Tabs -->

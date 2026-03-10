@@ -307,7 +307,7 @@ code {
   color: var(--text-ghost);
   cursor: pointer;
   padding: 0;
-  font-size: 1rem;
+  font-size: var(--text-h3);
   line-height: 1;
   transition: color 0.12s ease;
 }
