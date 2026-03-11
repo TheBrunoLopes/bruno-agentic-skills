@@ -35,7 +35,7 @@ The design system has **two CSS layers** that coexist:
 
 ```css
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap');
 
 /* ── Bridge tokens into Tailwind so utilities work ── */
 @theme {
@@ -56,7 +56,7 @@ The design system has **two CSS layers** that coexist:
   --color-border-medium:  rgba(255, 255, 255, 0.15);
 
   --font-pixel: 'Press Start 2P', cursive;
-  --font-body:  'Inter', sans-serif;
+  --font-body:  'JetBrains Mono', monospace;
   --font-mono:  'JetBrains Mono', monospace;
 }
 
@@ -111,7 +111,7 @@ This system is opinionated but flexible — the aesthetic is fixed, but how you 
 
 All tokens are defined as CSS custom properties in `references/tokens.md`. Copy the full `:root` block from that file into your stylesheet — every component and pattern references these via `var()`.
 
-**Key variable groups**: `--bg-*` (backgrounds), `--cyan`/`--pink`/`--yellow`/`--green` (accents + opacity scales at 03–40), `--text-*` (hierarchy), `--border-*` (structural), `--font-*` (4 families), `--text-display` through `--text-nano` (type scale, plus `--text-title` for headings), `--tracking-*` (letter-spacing), `--space-*` (spacing), `--transition-*`, `--shadow-*`, `--z-*`.
+**Key variable groups**: `--bg-*` (backgrounds), `--cyan`/`--pink`/`--yellow`/`--green` (accents + opacity scales at 03–40), `--text-*` (hierarchy), `--border-*` (structural), `--font-*` (3 families), `--text-display` through `--text-nano` (type scale, plus `--text-title` for headings), `--tracking-*` (letter-spacing), `--space-*` (spacing), `--transition-*`, `--shadow-*`, `--z-*`.
 
 Shared `@keyframes` animations (`spin`, `pulse`, `blink`, `skeletonShimmer`, `crtFlicker`, `glitchTop`, `glitchBottom`, `gridScroll`) are also in tokens.md.
 
@@ -129,7 +129,7 @@ This system is dense and terminal-inspired, but **readability comes first**. The
 **Working range** (95% of your UI):
 - **Page titles**: Press Start 2P at `clamp(0.8rem, 1.5vw, 1.1rem)`
 - **Section headers / card titles**: Press Start 2P at `var(--text-title)` (0.9rem)
-- **Body text / inputs**: `var(--text-body)` (0.9rem) — Inter for prose, JetBrains Mono for data
+- **Body text / inputs**: `var(--text-body)` (0.9rem) — JetBrains Mono
 - **Table cells / code**: `var(--text-sm)` (0.8rem) JetBrains Mono
 - **Labels / table headers**: `var(--text-xs)` (0.75rem) uppercase JetBrains Mono
 - **Badges / metadata**: `var(--text-label)` (0.7rem) JetBrains Mono
@@ -140,8 +140,7 @@ This system is dense and terminal-inspired, but **readability comes first**. The
 - `--text-stat` (1.4rem) — large dashboard stat values (JetBrains Mono bold)
 
 **Font roles**:
-- **JetBrains Mono** is the dominant UI font — buttons, labels, inputs, tables, badges, nav, stats, all technical chrome. **Important**: the global `body` is set to Inter, so you must explicitly set `font-family: var(--font-mono)` on every technical element — nothing inherits Mono automatically
-- **Inter** is for readable prose only — body paragraphs, descriptions, dialog messages, helper text
+- **JetBrains Mono** is the universal UI font — body text, buttons, labels, inputs, tables, badges, nav, stats, descriptions, all text. The global `body` is set to JetBrains Mono via `var(--font-body)`
 - **Press Start 2P** is for display titles only — page headings, section headers, brand. Always small (never above 1.1rem in app UI, exception: decorative glitch text on landing pages). Always uppercase.
 
 **Letter-spacing tiers** (always paired with uppercase JetBrains Mono):
@@ -239,8 +238,7 @@ The code you generate must work, not just look right:
 ## Dos and Don'ts
 
 **DO:**
-- Use JetBrains Mono for anything technical (data, labels, buttons, forms, code, stats)
-- Use Inter for readable body text and descriptions
+- Use JetBrains Mono for all text (body, data, labels, buttons, forms, code, stats, descriptions)
 - Use Press Start 2P sparingly for titles and section headers
 - Include hover/focus transitions on all interactive elements
 - Use the loud/quiet card hierarchy intentionally
@@ -249,19 +247,18 @@ The code you generate must work, not just look right:
 
 **DON'T:**
 - Use light themes or white backgrounds
-- Use generic fonts (Arial, Roboto, system-ui)
 - Make everything quiet — every page needs at least one loud focal element (`.cyber-card` or `.cyber-table`). The main table or primary content card should glow
 - Make everything loud either — too many glowing panels fight for attention. Pick one focal element per page view
 - Mix accent colors randomly — each has a semantic role
 - Forget the `transition` property on interactive elements
 - Use rounded corners (border-radius) — this system uses sharp edges throughout. Exception: tiny status indicator dots (`border-radius: 50%` on `≤8px` circles) are fine
 - Use `--text-display` or `--text-stat` for normal page headings — those are rare display sizes. Page titles use Press Start 2P at `clamp(0.8rem, 1.5vw, 1.1rem)`
-- Forget that the global `body` font is Inter — JetBrains Mono is the dominant UI font, but you must explicitly set `font-family: var(--font-mono)` on every technical element. Anything without an explicit font-family inherits Inter
+- Use fonts outside the system (Arial, Roboto, Inter, system-ui) — only JetBrains Mono, Press Start 2P, and Noto Sans JP (decorative) are used
 
 ## Google Fonts Import
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 ```
 
 ## When to Read Reference Files

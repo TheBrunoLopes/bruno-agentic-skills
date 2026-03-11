@@ -5,12 +5,12 @@ All design tokens as CSS custom properties. Copy the `:root` block into your sty
 ## Google Fonts Import
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 ```
 
 Or via CSS `@import`:
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@700;900&display=swap');
 ```
 
 ---
@@ -89,7 +89,7 @@ Or via CSS `@import`:
 
   /* ── Font Stacks ── */
   --font-pixel: 'Press Start 2P', cursive;
-  --font-body:  'Inter', sans-serif;
+  --font-body:  'JetBrains Mono', monospace;
   --font-mono:  'JetBrains Mono', monospace;
   --font-jp:    'Noto Sans JP', sans-serif;
 
@@ -264,22 +264,9 @@ This font renders large — **always use it smaller than you'd expect**. Never a
 - **Avoid**: Body text, descriptions — poor readability at length
 - Pixel-grid aligned — best at even px values
 
-### Inter — Readable Body Text
+### JetBrains Mono — Universal UI Font
 
-| Size | Token | Weight | Use |
-|------|-------|--------|-----|
-| `1.4rem` | `--text-stat` | 700 (bold) | Hero subheading (rare — Inter is used here only on landing/hero pages) |
-| `1rem` | `--text-h3` | 600 (semibold) | Card/dialog titles |
-| `0.95rem` | — | 500 (medium) | Body primary (emphasis) |
-| `0.9rem` | `--text-body` | 400 (regular) | Body default, descriptions |
-| `0.85rem` | — | 400 (regular) | Small body, helper text |
-
-- **Line-height**: `var(--leading-normal)` (1.6) for body, `var(--leading-tight)` (1.2) for headings
-- Primary readable font — use for anything requiring comfortable reading
-
-### JetBrains Mono — Technical Workhorse (dominant UI font)
-
-This is the **most-used font** in the system — buttons, labels, inputs, tables, badges, nav, stats, and all technical chrome.
+This is the **only body font** in the system — all text uses JetBrains Mono: buttons, labels, inputs, tables, badges, nav, stats, descriptions, body text, and all technical chrome.
 
 | Size | Token | Weight | Use |
 |------|-------|--------|-----|
